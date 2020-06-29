@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CourseLibrary.API.Models;
+using CourseLibrary.API.ResourcesParameters;
 
 namespace CourseLibrary.API.Controllers
 {
@@ -27,9 +28,9 @@ namespace CourseLibrary.API.Controllers
 
         [HttpGet()]
         [HttpHead]
-        public IActionResult GetAuthors([FromQuery(Name = "mainCategory")]string mainCategory, string searchQuery)
+        public IActionResult GetAuthors([FromQuery]AuthorsResourcesParameters authorsResourcesParameters)
         {
-            var authorsFromRepo = _courseLibraryRepository.GetAuthors(mainCategory, searchQuery);
+            var authorsFromRepo = _courseLibraryRepository.GetAuthors(authorsResourcesParameters);
 
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsFromRepo));
         }

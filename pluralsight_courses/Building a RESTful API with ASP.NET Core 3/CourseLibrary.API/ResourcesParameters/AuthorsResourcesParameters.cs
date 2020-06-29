@@ -3,6 +3,6 @@ namespace CourseLibrary.API.ResourcesParameters
     public class AuthorsResourcesParameters
     {
         public string MainCategory { get; set; }
-        public string QueryString { get; set; }
+        public string SearchQuery { get; set; }
     }
 }
