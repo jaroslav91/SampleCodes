@@ -74,5 +74,13 @@ namespace CourseLibrary.API.Controllers
             return CreatedAtRoute("GetCourseForAuthor", new { authorId = authorId, courseId = courseToReturn.Id }, courseToReturn);
 
         }
+
+        
+        [HttpOptions]
+        public IActionResult GetCoursesOptions()
+        {
+            Response.Headers.Add("Allow", "GET,OPTIONS,POST");            
+            return Ok();
+        }
     }
 }
