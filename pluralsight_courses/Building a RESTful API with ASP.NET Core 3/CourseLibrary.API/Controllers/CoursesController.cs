@@ -64,7 +64,7 @@ namespace CourseLibrary.API.Controllers
 
 
         [HttpPost]
-        public ActionResult<CourseDto> CreateCourseForAuthor(Guid authorId, CourseDtoForCreation courseDtoForCreation)
+        public ActionResult<CourseDto> CreateCourseForAuthor(Guid authorId, CourseForCreationDto courseDtoForCreation)
         {
             var courseEntity = _mapper.Map<Course>(courseDtoForCreation);
             _courseLibraryRepository.AddCourse(authorId, courseEntity);
@@ -81,6 +81,26 @@ namespace CourseLibrary.API.Controllers
         {
             Response.Headers.Add("Allow", "GET,OPTIONS,POST");            
             return Ok();
+        }
+
+        [HttpPut("{courseId}")]
+        public ActionResult UpdateCourseForAuthor(Guid authorId, Guid courseId, CourseForUpdateDto courseForUpdateDto)
+        {
+            if(!_courseLibraryRepository.AuthorExists(authorId)){
+               return NotFound();
+            }
+
+            var courseToUpdateFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
+            if(courseToUpdateFromRepo == null){
+                return NotFound();
+            }
+
+            _mapper.Map(courseForUpdateDto, courseToUpdateFromRepo);
+            
+            _courseLibraryRepository.Save();
+
+            return NoContent();
+
         }
     }
 }

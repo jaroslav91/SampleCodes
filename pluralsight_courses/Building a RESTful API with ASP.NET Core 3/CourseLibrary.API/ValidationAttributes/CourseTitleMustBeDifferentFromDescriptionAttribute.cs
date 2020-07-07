@@ -8,12 +8,12 @@ namespace CourseLibrary.API.ValidationAttributes
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
 
-            var course = (CourseDtoForCreation)validationContext.ObjectInstance;
+            var course = (CourseForModificationDto)validationContext.ObjectInstance;
 
             if (course.Title == course.Description)
             {
                 return new ValidationResult(
-                    ErrorMessage, new[] { nameof(CourseDtoForCreation) });
+                    ErrorMessage, new[] { nameof(CourseForModificationDto) });
             }
 
             return ValidationResult.Success;

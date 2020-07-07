@@ -7,7 +7,8 @@ namespace CourseLibrary.API.Profiles
         public CourseProfile()
         {
             CreateMap<Entities.Course, Models.CourseDto>();
-            CreateMap<Models.CourseDtoForCreation, Entities.Course>();
+            CreateMap<Models.CourseForCreationDto, Entities.Course>();
+            CreateMap<Models.CourseForUpdateDto, Entities.Course>();
         }
     }
 }
