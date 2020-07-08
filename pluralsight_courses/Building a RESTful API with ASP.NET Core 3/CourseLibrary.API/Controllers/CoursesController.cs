@@ -8,6 +8,10 @@ using AutoMapper;
 using CourseLibrary.API.Models;
 using CourseLibrary.API.Entities;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace CourseLibrary.API.Controllers
 {
@@ -110,7 +114,7 @@ namespace CourseLibrary.API.Controllers
 
         [HttpPatch("{courseId}")]
         public ActionResult PartllyUpdateCourseForAuthor(
-            Guid authorId, Guid courseId, 
+            Guid authorId, Guid courseId,
             JsonPatchDocument<CourseForUpdateDto> patchDocument)
         {
 
@@ -127,7 +131,12 @@ namespace CourseLibrary.API.Controllers
 
             var courseToPatch = _mapper.Map<CourseForUpdateDto>(courseToUpdateFromRepo);
 
-            patchDocument.ApplyTo(courseToPatch);
+            patchDocument.ApplyTo(courseToPatch, ModelState);
+
+            if (!TryValidateModel(courseToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
 
             _mapper.Map(courseToPatch, courseToUpdateFromRepo);
 
@@ -136,6 +145,12 @@ namespace CourseLibrary.API.Controllers
             _courseLibraryRepository.Save();
             return NoContent();
 
+        }
+
+        public override ActionResult ValidationProblem([ActionResultObjectValue] ModelStateDictionary modelStateDictionary)
+        {
+            var options = HttpContext.RequestServices.GetRequiredService<IOptions<ApiBehaviorOptions>>();
+            return (ActionResult)options.Value.InvalidModelStateResponseFactory(ControllerContext);
         }
     }
 }
