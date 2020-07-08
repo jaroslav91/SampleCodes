@@ -128,7 +128,12 @@ namespace CourseLibrary.API.Controllers
             {
                 var courseDto = new CourseForUpdateDto();
 
-                patchDocument.ApplyTo(courseDto);
+                patchDocument.ApplyTo(courseDto, ModelState);
+
+                if (!TryValidateModel(courseDto))
+                {
+                    return ValidationProblem(ModelState);
+                }
 
                 var courseToAdd = _mapper.Map<Course>(courseDto);
                 courseToAdd.Id = courseId;
@@ -136,10 +141,10 @@ namespace CourseLibrary.API.Controllers
                 _courseLibraryRepository.AddCourse(authorId, courseToAdd);
                 _courseLibraryRepository.Save();
 
-                var vourseToReturn = _mapper.Map<CourseDto>(courseToAdd);
+                var courseToReturn = _mapper.Map<CourseDto>(courseToAdd);
 
-                return CreatedAtRoute("GetCourseForAuthor", new {authorId, courseId = courseToAdd.Id}, courseToAdd );
-                
+                return CreatedAtRoute("GetCourseForAuthor", new { authorId, courseId = courseToReturn.Id }, courseToReturn);
+
             }
 
             var courseToPatch = _mapper.Map<CourseForUpdateDto>(courseToUpdateFromRepo);
@@ -157,6 +162,30 @@ namespace CourseLibrary.API.Controllers
 
             _courseLibraryRepository.Save();
             return NoContent();
+
+        }
+
+        [HttpDelete("{courseId}")]
+        public ActionResult DeleteCourseForAuthor(Guid authorId, Guid courseId)
+        {
+
+            if (!_courseLibraryRepository.AuthorExists(authorId))
+            {
+                return NotFound();
+
+            }
+
+            var courseFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
+            if (courseFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _courseLibraryRepository.DeleteCourse(courseFromRepo);
+            _courseLibraryRepository.Save();
+
+            return NoContent();
+
 
         }
 
