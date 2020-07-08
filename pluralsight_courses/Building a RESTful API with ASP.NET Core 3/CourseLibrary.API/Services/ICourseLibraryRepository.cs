@@ -18,6 +18,7 @@ namespace CourseLibrary.API.Services
         IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIds);
         void AddAuthor(Author author);
         void DeleteAuthor(Author author);
+        void DeleteAuthors();
         void UpdateAuthor(Author author);
         bool AuthorExists(Guid authorId);
         bool Save();

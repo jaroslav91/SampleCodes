@@ -29,7 +29,7 @@ namespace CourseLibrary.API.Controllers
 
         [HttpGet()]
         [HttpHead]
-        public IActionResult GetAuthors([FromQuery]AuthorsResourcesParameters authorsResourcesParameters)
+        public IActionResult GetAuthors([FromQuery] AuthorsResourcesParameters authorsResourcesParameters)
         {
             var authorsFromRepo = _courseLibraryRepository.GetAuthors(authorsResourcesParameters);
 
@@ -50,14 +50,14 @@ namespace CourseLibrary.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult<AuthorDto> CreateAuthor(AuthorForCreationDto authorForCreation)        
+        public ActionResult<AuthorDto> CreateAuthor(AuthorForCreationDto authorForCreation)
         {
             var authorEntity = _mapper.Map<Author>(authorForCreation);
             _courseLibraryRepository.AddAuthor(authorEntity);
             _courseLibraryRepository.Save();
-            var authorToReturn =_mapper.Map<AuthorDto>(authorEntity);
+            var authorToReturn = _mapper.Map<AuthorDto>(authorEntity);
 
-            return CreatedAtRoute("GetAuthor", new { authorId = authorToReturn.Id }, authorToReturn );
+            return CreatedAtRoute("GetAuthor", new { authorId = authorToReturn.Id }, authorToReturn);
 
 
         }
@@ -65,8 +65,34 @@ namespace CourseLibrary.API.Controllers
         [HttpOptions]
         public IActionResult GetAuthorsOptions()
         {
-            Response.Headers.Add("Allow", "GET,OPTIONS,POST");            
+            Response.Headers.Add("Allow", "GET,OPTIONS,POST");
             return Ok();
+        }
+
+        [HttpDelete("{authorId}")]
+        public ActionResult DeleteAuthor(Guid authorId)
+        {
+
+            var authorFromRepo = _courseLibraryRepository.GetAuthor(authorId);
+            if (authorFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _courseLibraryRepository.DeleteAuthor(authorFromRepo);
+            _courseLibraryRepository.Save();
+
+            return NoContent();
+
+        }
+
+        [HttpDelete]
+        public ActionResult DeleteAuthors()
+        {
+            _courseLibraryRepository.DeleteAuthors();
+            _courseLibraryRepository.Save();
+
+            return NoContent();
         }
     }
 }

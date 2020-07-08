@@ -108,6 +108,11 @@ namespace CourseLibrary.API.Services
             _context.Authors.Remove(author);
         }
 
+        public void DeleteAuthors()
+        {            
+            _context.Authors.RemoveRange(_context.Authors);
+        }
+
         public Author GetAuthor(Guid authorId)
         {
             if (authorId == Guid.Empty)
