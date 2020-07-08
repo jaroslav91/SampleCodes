@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CourseLibrary.API.Models;
 using CourseLibrary.API.Entities;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace CourseLibrary.API.Controllers
 {
@@ -75,30 +76,64 @@ namespace CourseLibrary.API.Controllers
 
         }
 
-        
+
         [HttpOptions]
         public IActionResult GetCoursesOptions()
         {
-            Response.Headers.Add("Allow", "GET,OPTIONS,POST");            
+            Response.Headers.Add("Allow", "GET,OPTIONS,POST");
             return Ok();
         }
 
         [HttpPut("{courseId}")]
         public ActionResult UpdateCourseForAuthor(Guid authorId, Guid courseId, CourseForUpdateDto courseForUpdateDto)
         {
-            if(!_courseLibraryRepository.AuthorExists(authorId)){
-               return NotFound();
+            if (!_courseLibraryRepository.AuthorExists(authorId))
+            {
+                return NotFound();
             }
 
             var courseToUpdateFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
-            if(courseToUpdateFromRepo == null){
+            if (courseToUpdateFromRepo == null)
+            {
                 return NotFound();
             }
 
             _mapper.Map(courseForUpdateDto, courseToUpdateFromRepo);
-            
+
+            _courseLibraryRepository.UpdateCourse(courseToUpdateFromRepo);
+
             _courseLibraryRepository.Save();
 
+            return NoContent();
+
+        }
+
+        [HttpPatch("{courseId}")]
+        public ActionResult PartllyUpdateCourseForAuthor(
+            Guid authorId, Guid courseId, 
+            JsonPatchDocument<CourseForUpdateDto> patchDocument)
+        {
+
+            if (!_courseLibraryRepository.AuthorExists(authorId))
+            {
+                return NotFound();
+            }
+
+            var courseToUpdateFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
+            if (courseToUpdateFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var courseToPatch = _mapper.Map<CourseForUpdateDto>(courseToUpdateFromRepo);
+
+            patchDocument.ApplyTo(courseToPatch);
+
+            _mapper.Map(courseToPatch, courseToUpdateFromRepo);
+
+            _courseLibraryRepository.UpdateCourse(courseToUpdateFromRepo);
+
+            _courseLibraryRepository.Save();
             return NoContent();
 
         }
