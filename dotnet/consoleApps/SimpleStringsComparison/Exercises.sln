@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consoleApps", "SimpleStringsComparison.ConsoleApp\consoleApps.csproj", "{169C6ACB-B689-4A90-BE0C-D87CA52DD01B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStringsComparison.ConsoleApps", "SimpleStringsComparison.ConsoleApp\consoleApps.csproj", "{169C6ACB-B689-4A90-BE0C-D87CA52DD01B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "SimpleStringsComparison.Tests\tests.csproj", "{B13545F0-3368-4B1C-9715-FEBFE8D51A6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStringsComparison.Tests", "SimpleStringsComparison.Tests\tests.csproj", "{B13545F0-3368-4B1C-9715-FEBFE8D51A6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAsyncConsoleApp", "SimpleAsyncConsoleApp\SimpleAsyncConsoleApp.csproj", "{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAsync.ConsoleApp", "SimpleAsyncConsoleApp\SimpleAsyncConsoleApp.csproj", "{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
