@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consoleApps", "SimpleString
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "SimpleStringsComparison.Tests\tests.csproj", "{B13545F0-3368-4B1C-9715-FEBFE8D51A6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAsyncConsoleApp", "SimpleAsyncConsoleApp\SimpleAsyncConsoleApp.csproj", "{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{B13545F0-3368-4B1C-9715-FEBFE8D51A6A}.Release|x64.Build.0 = Release|Any CPU
 		{B13545F0-3368-4B1C-9715-FEBFE8D51A6A}.Release|x86.ActiveCfg = Release|Any CPU
 		{B13545F0-3368-4B1C-9715-FEBFE8D51A6A}.Release|x86.Build.0 = Release|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Debug|x64.Build.0 = Debug|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Debug|x86.Build.0 = Debug|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Release|x64.ActiveCfg = Release|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Release|x64.Build.0 = Release|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Release|x86.ActiveCfg = Release|Any CPU
+		{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
