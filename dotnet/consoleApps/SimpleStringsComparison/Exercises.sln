@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStringsComparison.Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStringsComparison.Tests", "SimpleStringsComparison.Tests\tests.csproj", "{B13545F0-3368-4B1C-9715-FEBFE8D51A6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAsync.ConsoleApp", "SimpleAsyncConsoleApp\SimpleAsyncConsoleApp.csproj", "{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAsync.ConsoleApp", "SimpleAsync.ConsoleApp\SimpleAsyncConsoleApp.csproj", "{E9D2BC64-65FB-47CF-ABD5-94EB2E7F1EBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
