@@ -1,0 +1,32 @@
+﻿@page
+@model KitchenBook.Pages.Recipes.ListModel
+@{
+}
+
+<h1>Kitchen Recipes</h1>
+
+<form method="get">
+     <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" value="" name="searchTerm"/>
+            <span class = "input-group-btn">
+                <button class="btn btn-default">d
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+
+        </div>
+    </div>
+</form>
+
+
+<table class="table">
+    @foreach (var recipe in  Model.Recipes)
+    {
+        <tr>
+            <td>@recipe.Name</td>
+            <td>@recipe.Description</td>
+            <td>@recipe.Cuisine</td>
+        </tr>
+    }
+</table>
