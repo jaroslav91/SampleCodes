@@ -5,34 +5,31 @@
 
 <h1>Kitchen Recipes</h1>
 
+
 <form method="get">
     <div class="form-group">
         <div class="input-group">
             <input type="search" class="form-control" 
                    asp-for="SearchTerm" />
-            <span>
-                <button class="btn btn-default"> Szukaj
-                    <i class="fas fa-search"></i>
-                </button>
-            </span>
+                   <span></span>
+              <button class="btn btn-danger btn-search"><i class="fa fa-search"></i>Szukaj</button>
+                </span>
         </div>
     </div>
 </form>
 
+<div class="row">
+@foreach (var recipe in  Model.Recipes)
+{
+    <partial name="_RecipeCard" model="recipe" />
+}
+  </div>
 
-<table class="table">
-    @foreach (var recipe in  Model.Recipes)
-    {
-        <tr>
-            <td>@recipe.Name</td>
-            <td>@recipe.Description</td>
-            <td>@recipe.Cuisine</td>
-            <td><a class="btn btn-lg"
-           asp-page="./Detail"
-           asp-route-recipeId="@recipe.Id">Szczegóły
-            <i class="fa fa-search-plus"></i>
-        </a></td> 
-        </tr>
+<div>
+    <a asp-page="./Edit" class="btn btn-primary my-2">Add New</a>
+</div>
 
-    }
-</table>
+
+
+
+
