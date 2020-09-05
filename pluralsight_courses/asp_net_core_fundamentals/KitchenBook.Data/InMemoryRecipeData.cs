@@ -67,10 +67,11 @@ namespace KitchenBook.Data
 
         public Recipe Update(Recipe updatedRecipe)
         {
-            var entity = recipes.Find(r => r.Id == updatedRecipe.Id);
+            var entity = recipes.Find(r => r.Id == updatedRecipe.Id);            
             if(entity != null)
-            {                
-                entity = updatedRecipe;
+            {      
+                var index = recipes.IndexOf(entity);
+                recipes[index] = updatedRecipe;                
             }
             return updatedRecipe;
         }

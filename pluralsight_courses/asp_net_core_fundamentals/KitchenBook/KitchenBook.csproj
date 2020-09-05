@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <ItemGroup>
-    <ProjectReference Include="..\KitchenBook.Data\KitchenBook.Data.csproj" />
-    <ProjectReference Include="..\KitchenBook.Core\KitchenBook.Core.csproj" />
+    <ProjectReference Include="..\KitchenBook.Data\KitchenBook.Data.csproj"/>
+    <ProjectReference Include="..\KitchenBook.Core\KitchenBook.Core.csproj"/>
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.7"/>
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
 </Project>

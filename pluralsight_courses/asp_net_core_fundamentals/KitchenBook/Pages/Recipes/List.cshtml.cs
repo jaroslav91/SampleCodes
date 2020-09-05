@@ -16,14 +16,17 @@ namespace KitchenBook.Pages.Recipes
 
         public IEnumerable<Recipe> Recipes {get; set;}
 
+        [BindProperty(SupportsGet =true)]
+        public string SearchTerm { get; set; }
+
         public ListModel(IRecipeData recipeData)
         {            
             this.recipeData = recipeData;
         }
 
-        public void OnGet(string searchTerm)
+        public void OnGet()
         {
-            Recipes = recipeData.GetRecipeByName(searchTerm);
+            Recipes = recipeData.GetRecipeByName(SearchTerm);
         }
     }
 }
