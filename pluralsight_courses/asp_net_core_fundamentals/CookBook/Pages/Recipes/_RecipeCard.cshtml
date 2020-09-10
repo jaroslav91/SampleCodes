@@ -1,0 +1,29 @@
+@using CookBook.Core
+@model Recipe
+
+<div class="column">
+
+
+<div class="card" >
+    @if(!string.IsNullOrEmpty(Model.ImagePath)){
+ <img class="card-img-top rounded-0" src="@Model.ImagePath" alt="Card image cap"> 
+    }
+    else{
+         <img class="card-img-top rounded-0" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg" alt="Card image cap"> 
+    }
+   
+  <div class="card-body">
+    <h5 class="card-title">@Model.Name</h5>
+    <p class="card-text">@Model.Description</p>
+    <p class="meta">
+        <span>@Model.PreparationTime</span>
+        <span>@Model.NumberOfServings</span>
+     </p>
+    <a asp-page="./Detail"
+           asp-route-recipeId="@Model.Id" class="stretched-link"></a>
+  </div>
+</div>
+
+</div> 
+
+<!-- Card -->

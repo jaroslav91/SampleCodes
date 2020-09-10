@@ -1,0 +1,10 @@
+@using CookBook.Core
+@model IEnumerable<PreparationStep>
+
+@if(Model != null)
+@foreach (var preparationStep in  Model.OrderBy(p=>p.Order))
+{
+    <h2>@preparationStep.Name</h2>
+    <p style="text-align:justify">@preparationStep.Description</p>
+
+}   
